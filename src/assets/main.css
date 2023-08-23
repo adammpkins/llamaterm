@@ -1,0 +1,123 @@
+@import './base.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html{
+  overflow-x: hidden;
+
+}
+@font-face {
+  font-family: 'Patua';
+  src: url('../fonts/PatuaOne-Regular.ttf') format('truetype');
+}
+h3{
+  font-family: 'Patua';
+
+}
+.greetings span{
+  margin-right:5px;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  font-weight: normal;
+  animation: fadeIn 5s;
+  
+
+}
+
+a,
+.green {
+  text-decoration: none;
+  color: #d56fd7;
+  transition: 0.4s;
+  font-weight: normal;
+}
+
+.cropped{
+  border-radius: 15px;
+}
+
+.border-container{
+
+  border-radius: 15px;
+
+  /* border gradient */
+  width: 560px;
+  height: 310px;
+  /* background: linear-gradient(145deg, #d56fd7, #757cd4); */
+  box-shadow:  10px 10px 40px #757cd4, 
+               -10px -10px 40px #d56fd7;
+  animation: reverseBoxShadowGradient 4s infinite alternate, slideInFromRight 1s ease-in-out;
+}
+
+@keyframes slideInFromRight {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes reverseBoxShadowGradient {
+  0% {
+    box-shadow:  10px 10px 40px #757cd4, 
+               -10px -10px 40px #d56fd7;
+  }
+  100% {
+    box-shadow:  -10px -10px 40px #757cd4, 
+               10px 10px 40px #d56fd7;
+  }
+}
+
+
+
+a:active, .green:active {
+  color: #757cd4;
+}
+nav a{
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-weight: 600;
+}
+
+nav a.router-link-exact-active {
+  color: #757cd4 !important;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hwb(302 13% 50% / 0.2);
+
+  }
+  nav a.router-link-exact-active:hover {
+    background-color: #434672 !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    display: flex;
+    place-items: center;
+  }
+
+  #app {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 2rem;
+  }
+}
