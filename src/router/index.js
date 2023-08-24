@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
-  history: createWebHistory('/llamaterm/'),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -21,6 +21,12 @@ const router = createRouter({
       path: '/docs',
       name: 'docs',
       component: () => import('../views/DocsView.vue')
+    },
+    // Add a simple catch-all fallback route. if the url doesn't match any static assets, it will render the index.html
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../views/HomeView.vue')
     }
   ]
 })
