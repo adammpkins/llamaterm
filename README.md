@@ -1,5 +1,5 @@
 # llamaterm
-
+[![Deploy static content to Pages](https://github.com/adammpkins/llamaterm/actions/workflows/deploy.yml/badge.svg)](https://github.com/adammpkins/llamaterm/actions/workflows/deploy.yml)
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup
