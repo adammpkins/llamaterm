@@ -46,9 +46,7 @@ a,
 
   border-radius: 15px;
 
-  /* border gradient */
-  width: 560px;
-  height: 310px;
+
   /* background: linear-gradient(145deg, #d56fd7, #757cd4); */
   box-shadow:  10px 10px 40px #757cd4, 
                -10px -10px 40px #d56fd7;

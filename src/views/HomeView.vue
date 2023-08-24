@@ -27,8 +27,8 @@ selected.value = 'linux'
       <pre><code>-rw-r--r-- 1 adammpkins adammpkins 0 Aug 22 05:56 1</code></pre>
     </div> -->
     <div v-if="selected === 'linux'"
-    class="border-container grid place-items-center">
-      <img src="/images/termout.gif" class="cropped" alt="">
+    class="border-container grid place-items-center lg:w-[560px] lg:h-[310px] sm:h-[210px] sm:w-[369.33px]">
+      <img src="/images/termout.gif" class="cropped lg:h-[300px] sm:h-[200px]" alt="">
     </div>
     <div v-if="selected === 'question'"
     class="border-container grid place-items-center">
