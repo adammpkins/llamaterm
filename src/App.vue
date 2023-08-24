@@ -22,7 +22,7 @@ import GithubButton from 'vue-github-button'
           data-color-scheme="no-preference: dark; light: light; dark: dark;" data-icon="octicon-star"
           data-show-count="true" aria-label="Star adammpkins/llama-terminal-completion on GitHub">Star</github-button>
           <github-button  data-color-scheme="no-preference: dark; light: light; dark: dark;" href="https://github.com/adammpkins">Follow adammpkins</github-button>
-        <github-button data-color-scheme="no-preference: dark; light: light; dark: dark;" href="https://github.com/adammpkins/llama-terminal-completion" data-icon="octicon-eye" data-show-count="true" aria-label="Watch adammpkins/llama-terminal-completion on GitHub">Watch</github-button>
+        <github-button data-color-scheme="no-preference: dark; light: light; dark: dark;" href="https://github.com/adammpkins" data-icon="octicon-eye" data-show-count="true" aria-label="Watch adammpkins/llama-terminal-completion on GitHub">Watch</github-button>
         </div>
 
       <nav>
