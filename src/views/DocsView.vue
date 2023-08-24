@@ -198,7 +198,7 @@ Options:
   }
 
   .hljs-built_in {
-    color: #e6c07b;
+    color: #ffffff;
   }
 
   .hljs-comment {
