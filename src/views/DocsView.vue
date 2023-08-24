@@ -3,11 +3,8 @@
 
 <template>
   <main>
-    <h1 id="llama-terminal-completion">Llama Terminal Completion</h1>
-    <p>Ever wish you could look up Linux commands or ask questions and receive responses from the terminal? You probably
-      need a paid service, an API key with paid usage, or at least an internet connection, right? Not with Llama Terminal
-      Completion. Instead, we&#39;ll Run a Large Language Model (think ChatGPT) locally, on your personal machine, and
-      generate responses from there.</p>
+    <h1 id="llama-terminal-completion"><a href="https://github.com/adammpkins/llama-terminal-completion">Llama Terminal Completion</a></h1>
+
     <h2 id="table-of-contents">Table of Contents</h2>
     <ul>
       <li><a href="#llama-terminal-completion">Llama Terminal Completion</a>
