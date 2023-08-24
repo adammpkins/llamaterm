@@ -14,5 +14,5 @@ export default defineConfig({
     }
   },
   build: {
-    base: '/llamaterm.github.io/'
+    base: '/llamaterm/'
 })
