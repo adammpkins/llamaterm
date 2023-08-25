@@ -31,8 +31,8 @@ selected.value = 'linux'
       <img src="/images/termout.gif" class="cropped lg:h-[300px] sm:h-[200px]" alt="">
     </div>
     <div v-if="selected === 'question'"
-    class="border-container grid place-items-center">
-      <img src="/images/lt-question.gif" class="cropped" alt="">
+    class="border-container grid place-items-center lg:w-[560px] lg:h-[310px] sm:h-[210px] sm:w-[369.33px]">
+      <img src="/images/lt-question.gif" class="cropped lg:h-[300px] sm:h-[200px]" alt="">
     </div>
 
 
