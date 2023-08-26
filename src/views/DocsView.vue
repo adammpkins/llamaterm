@@ -34,7 +34,7 @@
     <h3 id="llama-cpp-installation">Llama.cpp installation</h3>
     <ol>
       <li>Clone the &#39;llama.cpp&#39; repository to your local machine
-        <pre><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/ggerganov/llamacpp.git
+        <pre class="overflow-x-auto"><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/ggerganov/llamacpp.git
 </code></pre>
       </li>
       <li>Build the llama.cpp library by following the instructions in the llama.cpp repository. A good tutorial for this
@@ -44,7 +44,7 @@
     <h3 id="llama-terminal-completion-installation">Llama Terminal Completion installation</h3>
     <ol>
       <li>Clone the llama-terminal-completion repository to your local machine:
-        <pre><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/adammpkins/llama-terminal-completion.git
+        <pre class="overflow-x-auto"><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/adammpkins/llama-terminal-completion.git
 </code></pre>
       </li>
       <li>Set up the environment variables (see below)</li>
@@ -54,7 +54,7 @@
       environment variables. These variables point to the directories where the <code>llama-terminal-completion</code> and
       <code>llama.cpp</code> files are located, respectively. You can set these variables in your shell configuration file
       (e.g., <code>.bashrc</code> or <code>.zshrc</code>) like this:</p>
-    <pre><code class="lang-bash"><span class="hljs-keyword">export</span> LLAMA_COMPLETION_DIR=<span class="hljs-string">"/path/to/llama-terminal-completion/"</span>
+    <pre class="overflow-x-auto"><code class="lang-bash"><span class="hljs-keyword">export</span> LLAMA_COMPLETION_DIR=<span class="hljs-string">"/path/to/llama-terminal-completion/"</span>
 <span class="hljs-keyword">export</span> LLAMA_CPP_DIR=<span class="hljs-string">"/path/to/llama.cpp/"</span>
 </code></pre>
     <p>Replace /path/to/llama-terminal-completion/ and /path/to/llama.cpp/ with the actual paths to the respective
@@ -65,25 +65,25 @@
     <p>Run the script with the desired options. Here are some examples:</p>
     <ul>
       <li>To generate a Linux command based on a prompt:
-        <pre><code class="lang-bash">  python3 ask_llama.py <span class="hljs-comment">"list the contents of the current directory"</span>
+        <pre class="overflow-x-auto"><code class="lang-bash">  python3 ask_llama.py <span class="hljs-comment">"list the contents of the current directory"</span>
 </code></pre>
       </li>
       <li>
         <p>To ask a question to the virtual assistant:</p>
-        <pre><code class="lang-bash">  python3 ask_llama<span class="hljs-selector-class">.py</span> -<span class="hljs-selector-tag">q</span> <span class="hljs-string">"How does photosynthesis work?"</span>
+        <pre class="overflow-x-auto"><code class="lang-bash">  python3 ask_llama<span class="hljs-selector-class">.py</span> -<span class="hljs-selector-tag">q</span> <span class="hljs-string">"How does photosynthesis work?"</span>
 </code></pre>
       </li>
       <li>
         <p>To clear the history of commands:</p>
-        <pre><code class="lang-bash">  python3 ask_llama<span class="hljs-selector-class">.py</span> -ch
+        <pre class="overflow-x-auto"><code class="lang-bash">  python3 ask_llama<span class="hljs-selector-class">.py</span> -ch
 </code></pre>
       </li>
     </ul>
     <p>For more options, you can run:</p>
-    <pre><code class="lang-bash"><span class="hljs-keyword">python3</span> ask_llama.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">help</span>
+    <pre class="overflow-x-auto"><code class="lang-bash"><span class="hljs-keyword">python3</span> ask_llama.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">help</span>
 </code></pre>
     <p>Its output is as follows:</p>
-    <pre><code class="lang-bash">Usage: python3 ask_llama.py [prompt]
+    <pre class="overflow-x-auto"><code class="lang-bash">Usage: python3 ask_llama.py [prompt]
 Example: python3 ask_llama.py <span class="hljs-string">'list all files in the current directory'</span>
 Options:
 -q                ask <span class="hljs-keyword">a</span> question <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> virtual assistant
@@ -97,10 +97,10 @@ Options:
   <h3 id="alias">Alias</h3>
   <p>You can create an alias for the script in your shell configuration file (e.g., <code>.bashrc</code> or
     <code>.zshrc</code>) like this:</p>
-  <pre><code class="lang-bash"><span class="hljs-keyword">alias</span> <span class="hljs-title">ask</span>=<span class="hljs-string">"python3 /path/to/llama-terminal-completion/ask_llama.py"</span>
+  <pre class="overflow-x-auto"><code class="lang-bash"><span class="hljs-keyword">alias</span> <span class="hljs-title">ask</span>=<span class="hljs-string">"python3 /path/to/llama-terminal-completion/ask_llama.py"</span>
 </code></pre>
   <p>Then you can run the script like this:</p>
-  <pre><code class="lang-bash">ask <span class="hljs-comment">"list the contents of the current directory"</span>
+  <pre class="overflow-x-auto"><code class="lang-bash">ask <span class="hljs-comment">"list the contents of the current directory"</span>
 </code></pre>
   <h2 id="contributing">Contributing</h2>
   <p>Contributions to this project are welcome! Feel free to fork the repository, make changes, and submit pull
