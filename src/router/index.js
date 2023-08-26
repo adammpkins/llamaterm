@@ -22,17 +22,6 @@ const router = createRouter({
       name: 'docs',
       component: () => import('../views/DocsView.vue')
     },
-    {
-      path: '/llamaterm/',
-      name: 'Home',
-      component: () => import('../views/HomeView.vue')
-    },
-    {
-      path: '/llamaterm/:queryParams(.*)',
-      name: 'Result',
-      component: Result,
-      props: true
-    },
     // Add a simple catch-all fallback route. if the url doesn't match any static assets, it will render the index.html
     {
       path: '/:pathMatch(.*)*',
