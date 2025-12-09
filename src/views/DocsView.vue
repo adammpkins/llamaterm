@@ -2,226 +2,351 @@
 </script>
 
 <template>
-  <main>
-    <h1 id="llama-terminal-completion"><a href="https://github.com/adammpkins/llama-terminal-completion">Llama Terminal Completion</a></h1>
+  <main class="docs-container">
+    <h1 id="llamaterm-docs"><a href="https://github.com/adammpkins/llama-terminal-completion">LlamaTerm Documentation</a></h1>
 
     <h2 id="table-of-contents">Table of Contents</h2>
-    <ul>
-      <li><a href="#llama-terminal-completion">Llama Terminal Completion</a>
-        <ul>
-          <li><a href="#table-of-contents">Table of Contents</a></li>
-          <li><a href="#installation">Installation</a>
-            <ul>
-              <li><a href="#llama-cpp-installation">Llama.cpp installation</a></li>
-              <li><a href="#llama-terminal-completion-installation">Llama Terminal Completion installation</a></li>
-              <li><a href="#environment-variables">Environment Variables</a></li>
-            </ul>
-          </li>
-          <li><a href="#usage">Usage</a>
-            <ul>
-              <li><a href="#alias">Alias</a></li>
-            </ul>
-          </li>
-          <li><a href="#contributing">Contributing</a></li>
-          <li><a href="#license">License</a></li>
-        </ul>
-      </li>
+    <ul class="toc">
+      <li><a href="#installation">Installation</a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+      <li><a href="#core-commands">Core Commands</a></li>
+      <li><a href="#piping-input">Piping Input</a></li>
+      <li><a href="#chat-history">Chat History</a></li>
+      <li><a href="#configuration">Configuration</a></li>
+      <li><a href="#supported-providers">Supported Providers</a></li>
+      <li><a href="#shell-completion">Shell Completion</a></li>
+      <li><a href="#all-commands">All Commands Reference</a></li>
     </ul>
-    <p>This Python script interacts with the <a href="https://github.com/ggerganov/llama.cpp">llama.cpp</a> library to
-      provide virtual assistant capabilities through the command line. It allows you to ask questions and receive
-      intelligent responses, as well as generate Linux commands based on your prompts.</p>
+
     <h2 id="installation">Installation</h2>
-    <h3 id="llama-cpp-installation">Llama.cpp installation</h3>
-    <ol>
-      <li>Clone the &#39;llama.cpp&#39; repository to your local machine
-        <pre class="overflow-x-auto"><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/ggerganov/llamacpp.git
-</code></pre>
-      </li>
-      <li>Build the llama.cpp library by following the instructions in the llama.cpp repository. A good tutorial for this
-        can be found at <a href="https://wandb.ai/capecape/LLMs/reports/How-to-Run-LLMs-Locally--Vmlldzo0Njg5NzMx">How to
-          Run LLMs Locally</a></li>
-    </ol>
-    <h3 id="llama-terminal-completion-installation">Llama Terminal Completion installation</h3>
-    <ol>
-      <li>Clone the llama-terminal-completion repository to your local machine:
-        <pre class="overflow-x-auto"><code class="lang-bash">git <span class="hljs-keyword">clone</span> <span class="hljs-title">https</span>://github.com/adammpkins/llama-terminal-completion.git
-</code></pre>
-      </li>
-      <li>Set up the environment variables (see below)</li>
-    </ol>
-    <h3 id="environment-variables">Environment Variables</h3>
-    <p>Before using this script, you need to set up the <code>LLAMA_COMPLETION_DIR</code> and <code>LLAMA_CPP_DIR</code>
-      environment variables. These variables point to the directories where the <code>llama-terminal-completion</code> and
-      <code>llama.cpp</code> files are located, respectively. You can set these variables in your shell configuration file
-      (e.g., <code>.bashrc</code> or <code>.zshrc</code>) like this:</p>
-    <pre class="overflow-x-auto"><code class="lang-bash"><span class="hljs-keyword">export</span> LLAMA_COMPLETION_DIR=<span class="hljs-string">"/path/to/llama-terminal-completion/"</span>
-<span class="hljs-keyword">export</span> LLAMA_CPP_DIR=<span class="hljs-string">"/path/to/llama.cpp/"</span>
-</code></pre>
-    <p>Replace /path/to/llama-terminal-completion/ and /path/to/llama.cpp/ with the actual paths to the respective
-      directories on your system.</p>
-    <h2 id="usage">Usage</h2>
-    <p>Open a terminal window.</p>
-    <p>Navigate to the directory where the ask_llama.py script is located.</p>
-    <p>Run the script with the desired options. Here are some examples:</p>
+
+    <h3 id="quick-install">Quick Install (Recommended)</h3>
+    <pre class="overflow-x-auto"><code class="lang-bash">curl -sSL https://raw.githubusercontent.com/adammpkins/llama-terminal-completion/main/install.sh | bash</code></pre>
+    <p>This downloads the latest release and installs it to <code>/usr/local/bin</code>.</p>
+
+    <h3 id="from-source">From Source</h3>
+    <pre class="overflow-x-auto"><code class="lang-bash">git clone https://github.com/adammpkins/llama-terminal-completion.git
+cd llamaterm
+make install</code></pre>
+    <p>Requires Go 1.21+.</p>
+
+    <h2 id="getting-started">Getting Started</h2>
+    <p>LlamaTerm works out of the box with <a href="https://ollama.ai">Ollama</a> running locally.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash"># Install Ollama (if not installed)
+curl -fsSL https://ollama.ai/install.sh | sh
+
+# Pull a model
+ollama pull llama3.2
+
+# Start using LlamaTerm
+lt ask "What is the difference between TCP and UDP?"</code></pre>
+
+    <h2 id="core-commands">Core Commands</h2>
+
+    <h3 id="lt-ask"><code>lt ask &lt;question&gt;</code></h3>
+    <p>Ask any question and get an AI response.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt ask "How do I find large files in Linux?"
+lt ask "Explain recursion in simple terms"</code></pre>
+    <p><strong>Options:</strong></p>
     <ul>
-      <li>To generate a Linux command based on a prompt:
-        <pre class="overflow-x-auto"><code class="lang-bash">  python3 ask_llama.py <span class="hljs-comment">"list the contents of the current directory"</span>
-</code></pre>
-      </li>
-      <li>
-        <p>To ask a question to the virtual assistant:</p>
-        <pre class="overflow-x-auto"><code class="lang-bash">  python3 ask_llama<span class="hljs-selector-class">.py</span> -<span class="hljs-selector-tag">q</span> <span class="hljs-string">"How does photosynthesis work?"</span>
-</code></pre>
-      </li>
-      <li>
-        <p>To clear the history of commands:</p>
-        <pre class="overflow-x-auto"><code class="lang-bash">  python3 ask_llama<span class="hljs-selector-class">.py</span> -ch
-</code></pre>
-      </li>
+      <li><code>-c, --copy</code> — Copy response to clipboard</li>
     </ul>
-    <p>For more options, you can run:</p>
-    <pre class="overflow-x-auto"><code class="lang-bash"><span class="hljs-keyword">python3</span> ask_llama.<span class="hljs-keyword">py</span> --<span class="hljs-keyword">help</span>
-</code></pre>
-    <p>Its output is as follows:</p>
-    <pre class="overflow-x-auto"><code class="lang-bash">Usage: python3 ask_llama.py [prompt]
-Example: python3 ask_llama.py <span class="hljs-string">'list all files in the current directory'</span>
-Options:
--q                ask <span class="hljs-keyword">a</span> question <span class="hljs-built_in">to</span> <span class="hljs-keyword">the</span> virtual assistant
--ch               <span class="hljs-built_in">clear</span> <span class="hljs-keyword">the</span> history <span class="hljs-keyword">of</span> commands
--cqh              <span class="hljs-built_in">clear</span> <span class="hljs-keyword">the</span> history <span class="hljs-keyword">of</span> questions
--h                show <span class="hljs-keyword">the</span> history <span class="hljs-keyword">of</span> commands
--qh               show <span class="hljs-keyword">the</span> history <span class="hljs-keyword">of</span> questions
--v                show <span class="hljs-keyword">the</span> <span class="hljs-built_in">version</span> <span class="hljs-keyword">of</span> llama-terminal-completion
-<span class="hljs-comment">--help            show this help message and exit</span>
-</code></pre>
-  <h3 id="alias">Alias</h3>
-  <p>You can create an alias for the script in your shell configuration file (e.g., <code>.bashrc</code> or
-    <code>.zshrc</code>) like this:</p>
-  <pre class="overflow-x-auto"><code class="lang-bash"><span class="hljs-keyword">alias</span> <span class="hljs-title">ask</span>=<span class="hljs-string">"python3 /path/to/llama-terminal-completion/ask_llama.py"</span>
-</code></pre>
-  <p>Then you can run the script like this:</p>
-  <pre class="overflow-x-auto"><code class="lang-bash">ask <span class="hljs-comment">"list the contents of the current directory"</span>
-</code></pre>
-  <h2 id="contributing">Contributing</h2>
-  <p>Contributions to this project are welcome! Feel free to fork the repository, make changes, and submit pull
-    requests.</p>
-  <h2 id="license">License</h2>
-  <p>This project is licensed under the <a href="https://choosealicense.com/licenses/mit/">MIT License</a></p>
 
+    <h3 id="lt-cmd"><code>lt cmd &lt;description&gt;</code></h3>
+    <p>Generate a shell command from a natural language description.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt cmd "find all .go files modified in the last week"
+lt cmd "compress all images in this folder"</code></pre>
+    <p><strong>Options:</strong></p>
+    <ul>
+      <li><code>--dry-run</code> — Show command without running</li>
+      <li><code>-y, --yes</code> — Run immediately without confirmation</li>
+    </ul>
+    <p>LlamaTerm detects dangerous commands (<code>rm -rf</code>, <code>sudo</code>, etc.) and warns you before execution.</p>
 
-</main></template>
+    <h3 id="lt-quick"><code>lt quick &lt;description&gt;</code></h3>
+    <p>Generate and run a command immediately (no confirmation).</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt quick "show disk usage"
+lt quick "list running docker containers"</code></pre>
+
+    <h3 id="lt-chat"><code>lt chat</code></h3>
+    <p>Start an interactive chat session with conversation memory.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt chat
+lt chat --resume  # Resume a previous conversation</code></pre>
+    <p><strong>In-chat commands:</strong></p>
+    <ul>
+      <li><code>/help</code> — Show available commands</li>
+      <li><code>/model</code> — Switch models</li>
+      <li><code>/history</code> — Browse saved conversations</li>
+      <li><code>/new</code> — Start a new conversation</li>
+      <li><code>/clear</code> — Clear current chat</li>
+      <li><code>Ctrl+H</code> — Open conversation history</li>
+      <li><code>Ctrl+O</code> — Open model selector</li>
+      <li><code>Ctrl+C</code> — Exit (auto-saves)</li>
+    </ul>
+
+    <h3 id="lt-explain"><code>lt explain &lt;file&gt; [question]</code></h3>
+    <p>Analyze and explain code or file contents.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt explain main.go
+lt explain config.yaml "What does this configure?"
+lt explain error.log "What went wrong?"</code></pre>
+
+    <h3 id="lt-fix"><code>lt fix &lt;error&gt;</code></h3>
+    <p>Get help fixing errors.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt fix "Error: module not found"
+npm run build 2>&amp;1 | lt fix</code></pre>
+
+    <h3 id="lt-copy"><code>lt copy &lt;question&gt;</code></h3>
+    <p>Ask a question and copy the response to clipboard.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt copy "Write a git commit message for adding user auth"</code></pre>
+
+    <h2 id="piping-input">Piping Input</h2>
+    <p>LlamaTerm reads from stdin, letting you pipe content:</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">cat error.log | lt ask "What's wrong here?"
+git diff | lt ask "Summarize these changes"
+docker logs myapp | lt fix</code></pre>
+
+    <h2 id="chat-history">Chat History</h2>
+    <p>Conversations are automatically saved and can be resumed later.</p>
+    <pre class="overflow-x-auto"><code class="lang-bash"># List saved conversations
+lt history list
+
+# Resume a conversation
+lt chat --resume
+
+# Delete a conversation
+lt history delete &lt;id&gt;
+
+# Clear all conversations
+lt history clear</code></pre>
+
+    <h2 id="configuration">Configuration</h2>
+    <p>LlamaTerm can be configured via config file, environment variables, or CLI flags.</p>
+
+    <h3 id="config-file">Config File</h3>
+    <p>Location: <code>~/.config/lt/config.yaml</code></p>
+    <pre class="overflow-x-auto"><code class="lang-yaml">base_url: http://localhost:11434/v1
+model: llama3.2
+api_key: ""
+stream: true
+max_tokens: 2048
+temperature: 0.7</code></pre>
+    <p>Create a config file interactively:</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt config init</code></pre>
+    <p>View current config:</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt config show</code></pre>
+
+    <h3 id="environment-variables">Environment Variables</h3>
+    <pre class="overflow-x-auto"><code class="lang-bash">export LT_BASE_URL=https://api.openai.com/v1
+export LT_MODEL=gpt-4o-mini
+export LT_API_KEY=sk-...</code></pre>
+    <p>Or use standard OpenAI environment variable:</p>
+    <pre class="overflow-x-auto"><code class="lang-bash">export OPENAI_API_KEY=sk-...</code></pre>
+
+    <h3 id="cli-flags">CLI Flags</h3>
+    <pre class="overflow-x-auto"><code class="lang-bash">lt --base-url https://api.openai.com/v1 --model gpt-4o-mini ask "Hello"</code></pre>
+    <table class="flags-table">
+      <thead>
+        <tr>
+          <th>Flag</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>--base-url</code></td><td>API base URL</td></tr>
+        <tr><td><code>--api-key</code></td><td>API key</td></tr>
+        <tr><td><code>-m, --model</code></td><td>Model to use</td></tr>
+        <tr><td><code>--no-stream</code></td><td>Disable streaming output</td></tr>
+        <tr><td><code>--max-tokens</code></td><td>Maximum tokens to generate</td></tr>
+        <tr><td><code>--temperature</code></td><td>Temperature for generation</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="supported-providers">Supported Providers</h2>
+    <p>LlamaTerm works with any OpenAI-compatible API:</p>
+    <table class="providers-table">
+      <thead>
+        <tr>
+          <th>Provider</th>
+          <th>Base URL</th>
+          <th>API Key Required</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><strong>Ollama</strong></td><td><code>http://localhost:11434/v1</code></td><td>No</td></tr>
+        <tr><td><strong>LM Studio</strong></td><td><code>http://localhost:1234/v1</code></td><td>No</td></tr>
+        <tr><td><strong>llama.cpp</strong></td><td><code>http://localhost:8080/v1</code></td><td>No</td></tr>
+        <tr><td><strong>OpenAI</strong></td><td><code>https://api.openai.com/v1</code></td><td>Yes</td></tr>
+        <tr><td><strong>Azure OpenAI</strong></td><td>Your deployment URL</td><td>Yes</td></tr>
+        <tr><td><strong>Anthropic (via proxy)</strong></td><td>Proxy URL</td><td>Yes</td></tr>
+        <tr><td><strong>Together AI</strong></td><td><code>https://api.together.xyz/v1</code></td><td>Yes</td></tr>
+        <tr><td><strong>Groq</strong></td><td><code>https://api.groq.com/openai/v1</code></td><td>Yes</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="shell-completion">Shell Completion</h2>
+    <p>Enable tab completion for commands and flags:</p>
+    <pre class="overflow-x-auto"><code class="lang-bash"># Bash
+lt completion bash > /usr/local/etc/bash_completion.d/lt
+
+# Zsh (add to ~/.zshrc)
+source &lt;(lt completion zsh)
+
+# Fish
+lt completion fish > ~/.config/fish/completions/lt.fish</code></pre>
+
+    <h2 id="all-commands">All Commands Reference</h2>
+    <table class="commands-table">
+      <thead>
+        <tr>
+          <th>Command</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>lt ask &lt;question&gt;</code></td><td>Ask a question</td></tr>
+        <tr><td><code>lt cmd &lt;description&gt;</code></td><td>Generate a shell command</td></tr>
+        <tr><td><code>lt quick &lt;description&gt;</code></td><td>Generate and run immediately</td></tr>
+        <tr><td><code>lt copy &lt;question&gt;</code></td><td>Ask and copy to clipboard</td></tr>
+        <tr><td><code>lt chat</code></td><td>Interactive chat session</td></tr>
+        <tr><td><code>lt explain &lt;file&gt;</code></td><td>Explain code or file</td></tr>
+        <tr><td><code>lt fix &lt;error&gt;</code></td><td>Help fix an error</td></tr>
+        <tr><td><code>lt config show</code></td><td>Show configuration</td></tr>
+        <tr><td><code>lt config init</code></td><td>Create config file</td></tr>
+        <tr><td><code>lt history list</code></td><td>List saved conversations</td></tr>
+        <tr><td><code>lt history delete &lt;id&gt;</code></td><td>Delete a conversation</td></tr>
+        <tr><td><code>lt history clear</code></td><td>Clear all conversations</td></tr>
+        <tr><td><code>lt completion &lt;shell&gt;</code></td><td>Generate shell completion</td></tr>
+        <tr><td><code>lt version</code></td><td>Show version info</td></tr>
+        <tr><td><code>lt help</code></td><td>Show help</td></tr>
+      </tbody>
+    </table>
+
+    <h2 id="contributing">Contributing</h2>
+    <p>Contributions to this project are welcome! Feel free to fork the repository, make changes, and submit pull requests.</p>
+
+    <h2 id="license">License</h2>
+    <p>This project is licensed under the <a href="https://choosealicense.com/licenses/mit/">MIT License</a></p>
+  </main>
+</template>
 
 <style scoped>
- h1, h2, h3 {
-    color: #333;
-    font-family: 'Patua';
-  }
+.docs-container {
+  padding: 0;
+  overflow-x: hidden;
+}
 
-  h1 {
-    margin-top: 30px;
-    font-size: 32px;
-    color:#757cd4;
+h1, h2, h3 {
+  color: #333;
+  font-family: 'Patua';
+}
 
-  }
+h1 {
+  margin-top: 30px;
+  font-size: 32px;
+  color: #757cd4;
+}
 
-  h2 {
-    font-size: 24px;
-    margin-top: 20px;
-    color:#757cd4;
+h2 {
+  font-size: 24px;
+  margin-top: 40px;
+  color: #757cd4;
+  border-bottom: 2px solid rgba(117, 124, 212, 0.3);
+  padding-bottom: 10px;
+}
 
-  }
+h3 {
+  font-size: 20px;
+  margin-top: 25px;
+  color: #757cd4;
+}
 
-  h3 {
-    font-size: 20px;
-    margin-top: 15px;
-    color:#757cd4;
-  }
+p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
 
-  p {
-    
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
+ul, ol {
+  margin: 10px 0;
+  padding-left: 25px;
+}
 
-  ul, ol {
-    margin: 0;
-    padding-left: 20px;
-  }
+li {
+  margin: 5px 0;
+  line-height: 1.5;
+}
 
-  ul ul, ol ul {
-    list-style-type: none;
-    margin-top: 5px;
-    padding-left: 20px;
-  }
+.toc {
+  background: rgba(117, 124, 212, 0.1);
+  border-radius: 10px;
+  padding: 20px 20px 20px 40px;
+  border: 1px solid rgba(117, 124, 212, 0.2);
+}
 
-  a {
-    color: #757cd4;
-    text-decoration: none;
-    font-family: 'Patua';
-  }
+.toc li {
+  margin: 8px 0;
+}
 
-  a:hover {
-    text-decoration: underline;
-  }
+a {
+  color: #757cd4;
+  text-decoration: none;
+  font-family: 'Patua';
+}
 
-  pre {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: #444444;
-    padding: 10px;
-    border-radius: 5px;
-  }
+a:hover {
+  text-decoration: underline;
+}
 
-  code {
-    font-family: Consolas, Monaco, monospace;
-    font-size: 14px;
-  }
+pre {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #1e1e1e;
+  padding: 15px;
+  border-radius: 8px;
+  overflow-x: auto;
+}
 
-  .lang-bash {
-    color: #ffffff;
-  }
+code {
+  font-family: 'SF Mono', Consolas, Monaco, monospace;
+  font-size: 14px;
+}
 
-  .hljs-keyword {
-    color: #ffffff;
-  }
+p code, li code, td code {
+  background-color: rgba(117, 124, 212, 0.15);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
 
-  .hljs-string {
-    color: #ffffff;
-  }
+.lang-bash, .lang-yaml {
+  color: #d4d4d4;
+}
 
-  .hljs-selector-tag {
-    color: #ffffff;
-  }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 14px;
+}
 
-  .hljs-selector-class {
-    color: #ffffff;
-  }
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid rgba(117, 124, 212, 0.2);
+}
 
-  .hljs-built_in {
-    color: #ffffff;
-  }
+th {
+  background: rgba(117, 124, 212, 0.15);
+  color: #757cd4;
+  font-family: 'Patua';
+}
 
-  .hljs-comment {
-    color: #ffffff
-  }
+tr:hover {
+  background: rgba(117, 124, 212, 0.05);
+}
 
-  .hljs-title {
-    color: #6f42c1;
-  }
-
-  .hljs-variable {
-    color: #ffffff;
-  }
-
-  .hljs-type {
-    color: #ffffff;
-  }
-
-  .hljs-section {
-    color: #ffffff;
-  }
-
-  .hljs-title {
-    color: #ffffff;
-  }
+.commands-table td:first-child,
+.flags-table td:first-child {
+  white-space: nowrap;
+}
 </style>
